@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio & CV - M. Ilham Pratama</title>
+    <style>
+        /* Reset & Base Styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Efek Scroll Halus (Smooth Scroll) */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+        }
+
+        /* 1. NAVBAR / NAVIGATION BAR FIXED DI ATAS */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #06174c; /* Warna Emerald */
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 15px 20px;
+        }
+
+        nav a {
+            color: #f0fdf4;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #34d399; /* Warna Hijau Terang saat di-hover */
+        }
+
+        /* 2. LAYOUT UTAMA (2 KOLOM: SIDEBAR TETAP DI KIRI, KONTEN SCROLL DI KANAN) */
+        .wrapper {
+            display: flex;
+            margin-top: 55px; /* Biar gak tertutup navbar */
+            min-height: calc(100vh - 55px);
+        }
+
+        /* Sidebar Kiri - Posisinya Diam (Sticky/Fixed-like) */
+        .sidebar {
+            background-color: #0f172a; /* Warna Gelap Premium */
+            color: #f8fafc;
+            width: 300px;
+            position: fixed;
+            top: 55px;
+            bottom: 0;
+            left: 0;
+            padding: 40px 25px;
+            overflow-y: auto;
+            text-align: center;
+        }
+
+        /* BINGKAI FOTO DIUBAH JADI PUTIH BERSIH */
+        .profile-img {
+            width: 140px;
+            height: 180px;
+            border-radius: 8px;
+            object-fit: cover;
+            border: 3px solid #ffffff; /* Mengubah outline ijo menjadi putih */
+            background-color: #1e293b;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        }
+
+        .sidebar h1 {
+            font-size: 1.4rem;
+            margin-bottom: 5px;
+            letter-spacing: -0.5px;
+        }
+
+        /* TULISAN JUNIOR PROGRAMMER DIUBAH JADI PUTIH */
+        .sidebar .title {
+            color: #ffffff; 
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 35px;
+            opacity: 0.9; /* Biar agak soft dikit dibanding nama utamamu */
+        }
+
+        .sidebar-heading {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            text-align: left;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-list {
+            text-align: left;
+            margin-bottom: 35px;
+        }
+
+        .contact-item {
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            color: #cbd5e1;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            justify-content: flex-start;
+        }
+
+        .skill-badge {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+            color: #e2e8f0;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* 3. AREA KONTEN KANAN (YANG BISA DI-SCROLL PER BAGIAN) */
+        .main-content {
+            margin-left: 300px; /* Lebar sama dengan sidebar biar gak tumpang tindih */
+            flex: 1;
+            padding: 20px 40px;
+        }
+
+        /* Gaya Tiap Section CV */
+        .cv-section {
+            padding: 60px 0 40px 0; /* Padding atas besar biar pas pas di-scroll dari menu */
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .cv-section:last-child {
+            border-bottom: none;
+            padding-bottom: 100px; /* Ruang kosong ekstra di paling bawah */
+        }
+
+        .cv-section h2 {
+            font-size: 1.5rem;
+            color: #06174c;
+            text-transform: uppercase;
+            border-bottom: 2px solid #34d399;
+            padding-bottom: 6px;
+            margin-bottom: 25px;
+            letter-spacing: 0.5px;
+        }
+
+        .about-text {
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1rem;
+            color: #334155;
+        }
+
+        /* Timeline & Proyek Layout */
+        .card-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .card-title {
+            font-weight: bold;
+            font-size: 1.15rem;
+            color: #0f172a;
+        }
+
+        .card-subtitle {
+            font-size: 0.85rem;
+            color: #059669;
+            font-weight: 600;
+            margin-top: 2px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .card-item ul {
+            padding-left: 20px;
+            font-size: 0.95rem;
+            color: #475569;
+        }
+
+        .card-item li {
+            margin-bottom: 4px;
+        }
+
+        .date-badge {
+            color: #64748b;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        /* RESPONSIVE LAYOUT UNTUK LAYAR HP */
+        @media (max-width: 850px) {
+            nav {
+                font-size: 0.8rem;
+                padding: 12px 10px;
+            }
+            nav a {
+                margin: 0 8px;
+                font-size: 0.8rem;
+            }
+            .wrapper {
+                flex-direction: column;
+            }
+            .sidebar {
+                position: relative;
+                width: 100%;
+                top: 0;
+                bottom: auto;
+                padding: 30px 20px;
+            }
+            .main-content {
+                margin-left: 0;
+                padding: 20px;
+            }
+            .cv-section {
+                padding-top: 40px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="#tentang">Tentang</a>
+        <a href="#proyek">Proyek</a>
+        <a href="#organisasi">Organisasi</a>
+        <a href="#pendidikan">Pendidikan</a>
+    </nav>
+
+    <div class="wrapper">
+        
+        <div class="sidebar">
+            <img src="foto-ilham.jpg" alt="M. Ilham Pratama" class="profile-img">
+            <h1>M. ILHAM PRATAMA</h1>
+            <div class="title">Junior Programmer</div>
+
+            <div class="sidebar-heading">Kontak</div>
+            <div class="contact-list">
+                <div class="contact-item">📍 Pandeglang, Indonesia</div>
+                <div class="contact-item">✉️ akunbuattugasilham@gmail.com</div>
+                <div class="contact-item">📞 083857591524</div>
+                <div class="contact-item">🌐 <a href="https://github.com/Ilhampratama10" target="_blank" style="color: #00ffae; text-decoration: none;">github.com/Ilhampratama10</a></div>
+            </div>
+
+            <div class="sidebar-heading">Keahlian</div>
+            <div class="skills-container">
+                <span class="skill-badge">Java (Dasar)</span>
+                <span class="skill-badge">C++ (Dasar)</span>
+                <span class="skill-badge">Logika Perulangan</span>
+                <span class="skill-badge">Microsoft Word</span>
+                <span class="skill-badge">PowerPoint</span>
+                <span class="skill-badge">Canva</span>
+            </div>
+        </div>
+
+        <div class="main-content">
+            
+            <section id="tentang" class="cv-section">
+                <h2>Tentang Saya</h2>
+                <p class="about-text">
+                    Saya adalah mahasiswa program studi Sistem Informasi di Universitas Pamulang Serang yang memiliki minat besar dalam pengembangan perangkat lunak sebagai Junior Programmer. Fokus pada penguatan logika dasar pemrograman menggunakan C++ dan Java, pemecahan masalah (problem solving), serta pengelolaan alur sistem informasi. Selain kemampuan teknis, saya aktif dalam kegiatan organisasi untuk mengembangkan kedisiplinan, kerja sama tim, dan manajemen waktu.
+                </p>
+            </section>
+
+            <section id="proyek" class="cv-section">
+                <h2>Pengalaman Proyek</h2>
+                
+                <div class="card-item">
+                    <div class="card-title">1. Simulasi ATM Sederhana</div>
+                    <div class="card-subtitle">Java Standard Edition • Logic Control</div>
+                    <p class="card-desc">Aplikasi berbasis CLI untuk mensimulasikan transaksi perbankan dasar dan keamanan akun nasabah.</p>
+                    <ul>
+                        <li>Menerapkan enkapsulasi dasar untuk mengamankan variabel PIN dan saldo data simulasi.</li>
+                        <li>Membangun logika penarikan uang otomatis dengan validasi kondisi batas minimum saldo.</li>
+                    </ul>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">2. Aplikasi Kalkulator Digital</div>
+                    <div class="card-subtitle">C++ • Math Functions • Switch-Case Control</div>
+                    <p class="card-desc">Program alat hitung aritmatika dasar untuk memproses operasi penjumlahan, pengurangan, perkalian, dan pembagian.</p>
+                    <ul>
+                        <li>Menggunakan struktur kendali switch-case untuk mengoptimalkan pemilihan menu operator.</li>
+                        <li>Menambahkan validasi pengaman pada operasi pembagian angka nol guna mencegah crash sistem.</li>
+                    </ul>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">3. Implementasi Algoritma Perulangan Eksperimental</div>
+                    <div class="card-subtitle">C++ / Java • Loops Concept</div>
+                    <p class="card-desc">Studi kasus optimasi logika perulangan untuk efisiensi eksekusi baris kode program, deret angka, dan instruksi otomatis.</p>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">4. Editor Video Periklanan & Media Kreatif</div>
+                    <div class="card-subtitle">Canva • Video Editing Tools</div>
+                    <p class="card-desc">Merancang konsep storyboard, penyelarasan audio, dan transisi visual menggunakan Canva untuk meningkatkan daya tarik promosi produk.</p>
+                </div>
+            </section>
+
+            <section id="organisasi" class="cv-section">
+                <h2>Pengalaman Organisasi</h2>
+                
+                <div class="card-item">
+                    <div class="card-title">Gerakan Pramuka SMAN 11 Pandeglang</div>
+                    <div class="date-badge">Anggota Aktif</div>
+                    <p class="card-desc">Berkontribusi dalam menyukseskan program kerja, melatih kedisiplinan, serta membantu operasional internal organisasi.</p>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">Panitia Masa Orientasi Pramuka (MOP)</div>
+                    <div class="date-badge">Divisi Pelaksana</div>
+                    <p class="card-desc">Bertanggung jawab merancang aktivitas lapangan, koordinasi logistik, dan memastikan adaptasi anggota baru.</p>
+                </div>
+            </section>
+
+            <section id="pendidikan" class="cv-section">
+                <h2>Pendidikan</h2>
+                
+                <div class="card-item">
+                    <div class="card-title">Universitas Pamulang Serang</div>
+                    <div class="date-badge">S1 Sistem Informasi (Semester 2) • 2025 - Sekarang</div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">SMAN 11 Pandeglang</div>
+                    <div class="date-badge">Lulus • 2022 - 2025</div>
+                </div>
+
+                <div class="card-item">
+                    <div class="card-title">MTSN 5 Pandeglang</div>
+                    <div class="date-badge">Lulus • 2019 - 2022</div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+</body>
+</html>
